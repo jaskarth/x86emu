@@ -1,0 +1,8 @@
+.gradle
+.idea
+out/
+build/
+
+test.sh
+
+testoutput.log

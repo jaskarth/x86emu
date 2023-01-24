@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'supercoder79'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    systemProperty "UICA_EXEC", System.getProperty("UICA_EXEC", null)
+
+    useJUnitPlatform()
+
+    testLogging {
+        outputs.upToDateWhen {false}
+        showStandardStreams = true
+    }
+}
