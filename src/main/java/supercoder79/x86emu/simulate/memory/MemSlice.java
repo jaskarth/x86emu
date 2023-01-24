@@ -1,6 +1,7 @@
 package supercoder79.x86emu.simulate.memory;
 
 import supercoder79.x86emu.simulate.Value;
+import supercoder79.x86emu.simulate.ValueType;
 
 public class MemSlice implements Value {
     private final HeapMemory memory;
@@ -109,5 +110,10 @@ public class MemSlice implements Value {
     @Override
     public void set(byte value) {
         set8(value);
+    }
+
+    @Override
+    public String stringify(ValueType type) {
+        return type.name().replace('r', 'm');
     }
 }

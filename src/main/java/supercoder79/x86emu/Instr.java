@@ -4,5 +4,11 @@ import supercoder79.x86emu.simulate.Value;
 import supercoder79.x86emu.simulate.register.RegisterSet;
 
 public interface Instr {
-    String name();
+    void execute();
+
+    default String name() {
+        return mnemonic();
+    }
+
+    String mnemonic();
 }

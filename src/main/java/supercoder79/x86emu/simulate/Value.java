@@ -10,4 +10,6 @@ public interface Value {
     void set(int value);
     void set(short value);
     void set(byte value);
+
+    String stringify(ValueType type);
 }

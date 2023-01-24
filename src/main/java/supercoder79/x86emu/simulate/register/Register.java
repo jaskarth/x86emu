@@ -1,6 +1,8 @@
 package supercoder79.x86emu.simulate.register;
 
 import supercoder79.x86emu.simulate.Value;
+import supercoder79.x86emu.simulate.ValueType;
+import supercoder79.x86emu.util.Bits;
 
 // Models an x86 64 bit register
 public class Register implements Value {
@@ -34,7 +36,7 @@ public class Register implements Value {
     // Clears top half of result!
     public void set32(int value) {
         // Masking is needed to prevent sign extension
-        this.value = Integer.toUnsignedLong(value);
+        this.value = Bits.u32l(value);
     }
 
     public void set16(short value) {
@@ -83,5 +85,10 @@ public class Register implements Value {
     @Override
     public void set(byte value) {
         set8(value);
+    }
+
+    @Override
+    public String stringify(ValueType type) {
+        return type.name();
     }
 }
