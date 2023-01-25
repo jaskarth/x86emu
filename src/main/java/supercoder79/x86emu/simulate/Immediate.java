@@ -5,7 +5,7 @@ import supercoder79.x86emu.util.Bits;
 import static supercoder79.x86emu.simulate.ValueType.*;
 
 public final class Immediate implements Value {
-    private final ValueType type;
+    private ValueType type;
     private final long value;
 
     public Immediate(long value) {
@@ -28,6 +28,9 @@ public final class Immediate implements Value {
         this.value = Bits.u8l(value);
     }
 
+    public void setType(ValueType type) {
+        this.type = type;
+    }
     @Override
     public long v64() {
         if (type == r64) {

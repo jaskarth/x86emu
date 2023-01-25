@@ -4,6 +4,8 @@ import supercoder79.x86emu.simulate.Value;
 import supercoder79.x86emu.simulate.ValueType;
 import supercoder79.x86emu.simulate.register.RegisterSet;
 
+import java.util.List;
+
 public abstract class BinaryInstrBase implements BinaryInstr {
     protected final RegisterSet set;
     protected final Value a;
@@ -19,6 +21,10 @@ public abstract class BinaryInstrBase implements BinaryInstr {
         this.typeB = typeB;
     }
 
+    protected Value mutateA(Value a, ValueType typeA) {
+        return a;
+    }
+
     @Override
     public Value a() {
         return a;
@@ -27,6 +33,16 @@ public abstract class BinaryInstrBase implements BinaryInstr {
     @Override
     public Value b() {
         return b;
+    }
+
+    @Override
+    public List<Value> liveins() {
+        return List.of(a, b);
+    }
+
+    @Override
+    public List<Value> liveouts() {
+        return List.of(b);
     }
 
     @Override

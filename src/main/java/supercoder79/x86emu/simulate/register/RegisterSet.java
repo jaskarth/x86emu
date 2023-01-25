@@ -1,5 +1,9 @@
 package supercoder79.x86emu.simulate.register;
 
+import supercoder79.x86emu.simulate.ValueType;
+
+import static supercoder79.x86emu.simulate.ValueType.*;
+
 public class RegisterSet {
     private final Register rax = new Register("rax", "eax", "ax", "al");
     private final Register rbx = new Register("rbx", "ebx", "bx", "bl");
@@ -190,5 +194,37 @@ public class RegisterSet {
                 && if_.isEqual(other.if_())
                 && df.isEqual(other.df())
                 && of.isEqual(other.of());
+    }
+
+    public Register getReg(String id) {
+        return switch (id) {
+            case "rax", "eax", "ax", "al" -> rax;
+            case "rbx", "ebx", "bx", "bl" -> rbx;
+            case "rcx", "ecx", "cx", "cl" -> rcx;
+            case "rdx", "edx", "dx", "dl" -> rdx;
+            case "rsi", "esi", "si", "sil" -> rsi;
+            case "rdi", "edi", "di", "dil" -> rdi;
+            case "rbp", "ebp", "bp", "bpl" -> rbp;
+            case "rsp", "esp", "sp", "spl" -> rsp;
+            case "r8", "r8d", "r8w", "r8b" -> r8;
+            case "r9", "r9d", "r9w", "r9b" -> r9;
+            case "r10", "r10d", "r10w", "r10b" -> r10;
+            case "r11", "r11d", "r11w", "r11b" -> r11;
+            case "r12", "r12d", "r12w", "r12b" -> r12;
+            case "r13", "r13d", "r13w", "r13b" -> r13;
+            case "r14", "r14d", "r14w", "r14b" -> r14;
+            case "r15", "r15d", "r15w", "r15b" -> r15;
+            default -> throw new RuntimeException("Unknown register: " + id);
+        };
+    }
+
+    public ValueType regType(String id) {
+        return switch (id) {
+            case "rax", "rbx", "rcx", "rdx", "rsi", "rdi", "rbp", "rsp", "r8", "r9", "r10", "r11", "r12", "r13", "r14", "r15" -> r64;
+            case "eax", "ebx", "ecx", "edx", "esi", "edi", "ebp", "esp", "r8d", "r9d", "r10d", "r11d", "r12d", "r13d", "r14d", "r15d" -> r32;
+            case "ax", "bx", "cx", "dx", "si", "di", "bp", "sp", "r8w", "r9w", "r10w", "r11w", "r12w", "r13w", "r14w", "r15w" -> r16;
+            case "al", "bl", "cl", "dl", "sil", "dil", "bpl", "spl", "r8b", "r9b", "r10b", "r11b", "r12b", "r13b", "r14b", "r15b" -> ValueType.r8;
+            default -> throw new RuntimeException("Unknown register: " + id);
+        };
     }
 }
