@@ -6,6 +6,8 @@ import supercoder79.x86emu.simulate.ValueType;
 import supercoder79.x86emu.simulate.register.RegisterSet;
 import supercoder79.x86emu.util.Flow;
 
+import java.util.List;
+
 public class Mov extends BinaryInstrBase {
     public Mov(RegisterSet set, Value a, Value b, ValueType typeA, ValueType typeB) {
         super(set, a, b, typeA, typeB);
@@ -53,6 +55,13 @@ public class Mov extends BinaryInstrBase {
         }
 
         Flow.unimp(typeA, typeB);
+    }
+
+    // Only lhs is live for mov
+
+    @Override
+    public List<Value> liveins() {
+        return List.of(a);
     }
 
     @Override

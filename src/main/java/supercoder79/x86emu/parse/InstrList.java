@@ -12,6 +12,10 @@ public class InstrList {
         instructions.add(instr);
     }
 
+    public List<Instr> getInstructions() {
+        return instructions;
+    }
+
     public String assemble() {
         StringBuilder builder = new StringBuilder();
 
