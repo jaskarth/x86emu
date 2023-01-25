@@ -6,7 +6,7 @@ import supercoder79.x86emu.util.Bits;
 
 // Models an x86 64 bit register
 public class Register implements Value {
-    public long value = 0;
+    private long value = 0;
 
     public long r64() {
         return value;
@@ -90,5 +90,9 @@ public class Register implements Value {
     @Override
     public String stringify(ValueType type) {
         return type.name();
+    }
+
+    public boolean isEqual(Register other) {
+        return this.value == other.value;
     }
 }

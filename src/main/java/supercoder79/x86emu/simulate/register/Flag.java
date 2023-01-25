@@ -10,4 +10,8 @@ public class Flag {
     public void set(boolean set) {
         this.set = set;
     }
+
+    public boolean isEqual(Flag flag) {
+        return this.set == flag.set;
+    }
 }

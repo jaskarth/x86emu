@@ -163,4 +163,32 @@ public class RegisterSet {
         df.set(false);
         of.set(false);
     }
+
+    public boolean isEqual(RegisterSet other) {
+        return rax.isEqual(other.rax())
+                && rbx.isEqual(other.rbx())
+                && rcx.isEqual(other.rcx())
+                && rdx.isEqual(other.rdx())
+                && rsi.isEqual(other.rsi())
+                && rdi.isEqual(other.rdi())
+                && rbp.isEqual(other.rbp())
+                && rsp.isEqual(other.rsp())
+                && r8.isEqual(other.r8())
+                && r9.isEqual(other.r9())
+                && r10.isEqual(other.r10())
+                && r11.isEqual(other.r11())
+                && r12.isEqual(other.r12())
+                && r13.isEqual(other.r13())
+                && r14.isEqual(other.r14())
+                && r15.isEqual(other.r15())
+                && cf.isEqual(other.cf())
+                && pf.isEqual(other.pf())
+                && af.isEqual(other.af())
+                && zf.isEqual(other.zf())
+                && sf.isEqual(other.sf())
+                && tf.isEqual(other.tf())
+                && if_.isEqual(other.if_())
+                && df.isEqual(other.df())
+                && of.isEqual(other.of());
+    }
 }

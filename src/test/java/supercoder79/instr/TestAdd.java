@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static supercoder79.x86emu.simulate.ValueType.*;
 
 public class TestAdd {
+    //<editor-fold desc="Tests making sure that the addition works">
     @Test
     public void add_r64_r64() {
         RegisterSet set = new RegisterSet();
@@ -150,4 +151,7 @@ public class TestAdd {
 
         assertEquals(30L, slice.v64());
     }
+    //</editor-fold>
+
+
 }
