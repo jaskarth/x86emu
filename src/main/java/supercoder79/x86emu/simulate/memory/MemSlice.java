@@ -116,4 +116,10 @@ public class MemSlice implements Value {
     public String stringify(ValueType type) {
         return type.name().replace('r', 'm');
     }
+
+    @Override
+    public String canonical(ValueType type) {
+        // TODO: x(%y)
+        return "[" + start + "]";
+    }
 }

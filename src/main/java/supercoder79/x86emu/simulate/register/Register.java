@@ -6,6 +6,18 @@ import supercoder79.x86emu.util.Bits;
 
 // Models an x86 64 bit register
 public class Register implements Value {
+    private final String r64;
+    private final String r32;
+    private final String r16;
+    private final String r8;
+
+    public Register(String r64, String r32, String r16, String r8) {
+        this.r64 = r64;
+        this.r32 = r32;
+        this.r16 = r16;
+        this.r8 = r8;
+    }
+
     private long value = 0;
 
     public long r64() {
@@ -90,6 +102,16 @@ public class Register implements Value {
     @Override
     public String stringify(ValueType type) {
         return type.name();
+    }
+
+    @Override
+    public String canonical(ValueType type) {
+        return "%" + switch (type) {
+            case r64 -> r64;
+            case r32 -> r32;
+            case r16 -> r16;
+            case r8 -> r8;
+        };
     }
 
     public boolean isEqual(Register other) {

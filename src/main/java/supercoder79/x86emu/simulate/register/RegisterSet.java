@@ -1,25 +1,25 @@
 package supercoder79.x86emu.simulate.register;
 
 public class RegisterSet {
-    private final Register rax = new Register();
-    private final Register rbx = new Register();
-    private final Register rcx = new Register();
-    private final Register rdx = new Register();
+    private final Register rax = new Register("rax", "eax", "ax", "al");
+    private final Register rbx = new Register("rbx", "ebx", "bx", "bl");
+    private final Register rcx = new Register("rcx", "ecx", "cx", "cl");
+    private final Register rdx = new Register("rdx", "edx", "dx", "dl");
 
-    private final Register rsi = new Register();
-    private final Register rdi = new Register();
+    private final Register rsi = new Register("rsi", "esi", "si", "sil");
+    private final Register rdi = new Register("rdi", "edi", "di", "dil");
 
-    private final Register rbp = new Register();
-    private final Register rsp = new Register();
+    private final Register rbp = new Register("rbp", "ebp", "bp", "bpl");
+    private final Register rsp = new Register("rsp", "esp", "sp", "spl");
 
-    private final Register r8 = new Register();
-    private final Register r9 = new Register();
-    private final Register r10 = new Register();
-    private final Register r11 = new Register();
-    private final Register r12 = new Register();
-    private final Register r13 = new Register();
-    private final Register r14 = new Register();
-    private final Register r15 = new Register();
+    private final Register r8 = new Register("r8", "r8d", "r8w", "r8b");
+    private final Register r9 = new Register("r9", "r9d", "r9w", "r9b");
+    private final Register r10 = new Register("r10", "r10d", "r10w", "r10b");
+    private final Register r11 = new Register("r11", "r11d", "r11w", "r11b");
+    private final Register r12 = new Register("r12", "r12d", "r12w", "r12b");
+    private final Register r13 = new Register("r13", "r13d", "r13w", "r13b");
+    private final Register r14 = new Register("r14", "r14d", "r14w", "r14b");
+    private final Register r15 = new Register("r15", "r15d", "r15w", "r15b");
 
     private final Flag cf = new Flag();
     private final Flag pf = new Flag();

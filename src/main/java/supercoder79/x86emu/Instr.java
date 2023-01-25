@@ -11,4 +11,6 @@ public interface Instr {
     }
 
     String mnemonic();
+
+    String assemble();
 }

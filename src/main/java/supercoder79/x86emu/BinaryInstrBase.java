@@ -12,7 +12,6 @@ public abstract class BinaryInstrBase implements BinaryInstr {
     protected final ValueType typeB;
 
     public BinaryInstrBase(RegisterSet set, Value a, Value b, ValueType typeA, ValueType typeB) {
-
         this.set = set;
         this.a = a;
         this.b = b;
@@ -33,5 +32,10 @@ public abstract class BinaryInstrBase implements BinaryInstr {
     @Override
     public String toString() {
         return name() + "_" + a.stringify(typeA) + "_" + b.stringify(typeB);
+    }
+
+    @Override
+    public String assemble() {
+        return mnemonic() + " " + a.canonical(typeA) + ", " + b.canonical(typeB);
     }
 }

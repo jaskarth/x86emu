@@ -97,4 +97,9 @@ public final class Immediate implements Value {
             case r8 -> "imm8";
         };
     }
+
+    @Override
+    public String canonical(ValueType type) {
+        return "$" + value;
+    }
 }

@@ -12,4 +12,6 @@ public interface Value {
     void set(byte value);
 
     String stringify(ValueType type);
+
+    String canonical(ValueType type);
 }
