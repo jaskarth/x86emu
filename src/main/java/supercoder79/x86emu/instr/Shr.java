@@ -36,11 +36,11 @@ public class Shr extends ShiftInstr {
 
     @Override
     protected short shift(short value) {
-        return (short) (value >>> 1);
+        return (short) ((value & 0xffff) >>> 1);
     }
 
     @Override
     protected byte shift(byte value) {
-        return (byte) (value >>> 1);
+        return (byte) ((value & 0xff) >>> 1);
     }
 }

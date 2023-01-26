@@ -27,6 +27,16 @@ public class InstrList {
         }
     }
 
+    public int size() {
+        return instructions.size();
+    }
+
+    public void execute() {
+        for (Instr instr : instructions) {
+            instr.execute();
+        }
+    }
+
     public String assemble() {
         StringBuilder builder = new StringBuilder();
 

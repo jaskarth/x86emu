@@ -31,7 +31,7 @@ public abstract class ShiftInstr extends BinaryInstrBase {
 
             byte va = a.v8();
             for (byte i = 0; i < va; i++) {
-                vb <<= 1;
+                vb = shift(vb);
             }
 
             b.set(vb);
@@ -40,7 +40,7 @@ public abstract class ShiftInstr extends BinaryInstrBase {
 
             byte va = a.v8();
             for (byte i = 0; i < va; i++) {
-                vb <<= 1;
+                vb = shift(vb);
             }
 
             b.set(vb);
@@ -49,7 +49,7 @@ public abstract class ShiftInstr extends BinaryInstrBase {
 
             byte va = a.v8();
             for (byte i = 0; i < va; i++) {
-                vb <<= 1;
+                vb = shift(vb);
             }
 
             b.set(vb);
