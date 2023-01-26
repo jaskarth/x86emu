@@ -31,6 +31,11 @@ public final class Immediate implements Value {
     public void setType(ValueType type) {
         this.type = type;
     }
+
+    public ValueType getType() {
+        return type;
+    }
+
     @Override
     public long v64() {
         if (type == r64) {

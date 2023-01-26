@@ -1,10 +1,9 @@
 package supercoder79.x86emu.dag;
 
-import supercoder79.x86emu.Instr;
+import supercoder79.x86emu.instr.trait.Instr;
 import supercoder79.x86emu.instr.misc.Opaque;
 import supercoder79.x86emu.parse.InstrList;
 import supercoder79.x86emu.simulate.Value;
-import supercoder79.x86emu.simulate.ValueType;
 import supercoder79.x86emu.simulate.register.Register;
 import supercoder79.x86emu.util.Pair;
 
@@ -15,13 +14,19 @@ import java.util.Map;
 
 public final class Graph {
     private final List<Node> nodes;
+    private final Node top;
 
-    public Graph(List<Node> nodes) {
+    public Graph(List<Node> nodes, Node top) {
         this.nodes = nodes;
+        this.top = top;
     }
 
     public List<Node> getNodes() {
         return nodes;
+    }
+
+    public Node getTop() {
+        return top;
     }
 
     public static Graph buildGraph(InstrList list) {
@@ -79,22 +84,26 @@ public final class Graph {
                     if (p.equals(key)) {
                         Edge edge = new Edge(start, end, key.first());
 
-                        start.getSuccessors().add(edge);
-                        end.getPredecessors().add(edge);
+                        setEdge(start, end, edge);
                         wroteAny = true;
                     }
                 }
             }
 
             if (!wroteAny) {
-                Edge edge = new Edge(start, nodes.get(opend), key.first());
+                Node end = nodes.get(opend);
+                Edge edge = new Edge(start, end, key.first());
 
-                start.getSuccessors().add(edge);
-                nodes.get(opend).getPredecessors().add(edge);
+                setEdge(start, end, edge);
             }
         }
 
-        return new Graph(new ArrayList<>(nodes.values()));
+        return new Graph(new ArrayList<>(nodes.values()), nodes.get(optop));
+    }
+
+    private static void setEdge(Node start, Node end, Edge edge) {
+        start.getSuccessors().add(edge);
+        end.getPredecessors().add(edge);
     }
 
     public static class Node {

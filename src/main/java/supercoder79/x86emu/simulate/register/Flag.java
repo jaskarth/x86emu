@@ -3,7 +3,7 @@ package supercoder79.x86emu.simulate.register;
 public class Flag {
     private boolean set = false;
 
-    public boolean isSet() {
+    public boolean get() {
         return set;
     }
 

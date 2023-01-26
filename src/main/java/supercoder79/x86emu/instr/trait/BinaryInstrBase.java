@@ -1,4 +1,4 @@
-package supercoder79.x86emu;
+package supercoder79.x86emu.instr.trait;
 
 import supercoder79.x86emu.simulate.Value;
 import supercoder79.x86emu.simulate.ValueType;

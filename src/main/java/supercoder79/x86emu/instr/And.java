@@ -1,14 +1,19 @@
 package supercoder79.x86emu.instr;
 
-import supercoder79.x86emu.BinaryInstrBase;
+import supercoder79.x86emu.instr.trait.BinaryInstrBase;
+import supercoder79.x86emu.instr.trait.ImmAcceptor;
+import supercoder79.x86emu.simulate.Immediate;
 import supercoder79.x86emu.simulate.Value;
 import supercoder79.x86emu.simulate.ValueType;
 import supercoder79.x86emu.simulate.register.RegisterSet;
+import supercoder79.x86emu.superopt.ImmCommon;
 import supercoder79.x86emu.util.Bits;
+
+import java.util.Random;
 
 import static supercoder79.x86emu.simulate.ValueType.*;
 
-public class And extends BinaryInstrBase {
+public class And extends BinaryInstrBase implements ImmAcceptor {
     public And(RegisterSet set, Value a, Value b, ValueType typeA, ValueType typeB) {
         super(set, a, b, typeA, typeB);
     }
@@ -74,5 +79,10 @@ public class And extends BinaryInstrBase {
     @Override
     public String mnemonic() {
         return "and";
+    }
+
+    @Override
+    public Immediate imm(Random random) {
+        return ImmCommon.flagBearingImm(random);
     }
 }

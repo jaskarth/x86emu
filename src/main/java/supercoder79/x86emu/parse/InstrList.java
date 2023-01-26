@@ -1,6 +1,7 @@
 package supercoder79.x86emu.parse;
 
-import supercoder79.x86emu.Instr;
+import supercoder79.x86emu.instr.trait.Instr;
+import supercoder79.x86emu.instr.misc.Opaque;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,16 @@ public class InstrList {
 
     public List<Instr> getInstructions() {
         return instructions;
+    }
+
+    public void transparent() {
+        for (int i = 0; i < instructions.size(); i++) {
+            Instr instr = instructions.get(i);
+            if (instr instanceof Opaque) {
+                instructions.remove(i);
+                i--;
+            }
+        }
     }
 
     public String assemble() {

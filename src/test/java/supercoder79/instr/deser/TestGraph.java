@@ -3,6 +3,7 @@ package supercoder79.instr.deser;
 import org.junit.jupiter.api.Test;
 import supercoder79.x86emu.dag.DotExporter;
 import supercoder79.x86emu.dag.Graph;
+import supercoder79.x86emu.dag.Topsort;
 import supercoder79.x86emu.parse.Parse;
 import supercoder79.x86emu.simulate.register.RegisterSet;
 

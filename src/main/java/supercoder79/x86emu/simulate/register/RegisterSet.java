@@ -168,6 +168,38 @@ public class RegisterSet {
         of.set(false);
     }
 
+    public RegisterSet clone() {
+        RegisterSet set = new RegisterSet();
+        set.rax().set64(rax.r64());
+        set.rbx().set64(rbx.r64());
+        set.rcx().set64(rcx.r64());
+        set.rdx().set64(rdx.r64());
+        set.rsi().set64(rsi.r64());
+        set.rdi().set64(rdi.r64());
+        set.rbp().set64(rbp.r64());
+        set.rsp().set64(rsp.r64());
+        set.r8().set64(r8.r64());
+        set.r9().set64(r9.r64());
+        set.r10().set64(r10.r64());
+        set.r11().set64(r11.r64());
+        set.r12().set64(r12.r64());
+        set.r13().set64(r13.r64());
+        set.r14().set64(r14.r64());
+        set.r15().set64(r15.r64());
+
+        set.cf().set(cf.get());
+        set.pf().set(pf.get());
+        set.af().set(af.get());
+        set.zf().set(zf.get());
+        set.sf().set(sf.get());
+        set.tf().set(tf.get());
+        set.if_().set(if_.get());
+        set.df().set(df.get());
+        set.of().set(of.get());
+
+        return set;
+    }
+
     public boolean isEqual(RegisterSet other) {
         return rax.isEqual(other.rax())
                 && rbx.isEqual(other.rbx())

@@ -1,6 +1,6 @@
 package supercoder79.x86emu.instr.misc;
 
-import supercoder79.x86emu.Instr;
+import supercoder79.x86emu.instr.trait.Instr;
 import supercoder79.x86emu.simulate.Value;
 
 import java.util.List;

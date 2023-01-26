@@ -4,6 +4,8 @@ import supercoder79.x86emu.simulate.Value;
 import supercoder79.x86emu.simulate.ValueType;
 import supercoder79.x86emu.util.Bits;
 
+import java.util.Objects;
+
 // Models an x86 64 bit register
 public class Register implements Value {
     private final String r64;
@@ -102,6 +104,19 @@ public class Register implements Value {
     @Override
     public String stringify(ValueType type) {
         return type.name();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Register register = (Register) o;
+        return r64.equals(register.r64) && r32.equals(register.r32) && r16.equals(register.r16) && r8.equals(register.r8);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(r64, r32, r16, r8);
     }
 
     @Override
