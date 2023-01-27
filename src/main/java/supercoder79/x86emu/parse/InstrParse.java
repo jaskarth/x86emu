@@ -7,6 +7,8 @@ import supercoder79.x86emu.simulate.ValueType;
 import supercoder79.x86emu.simulate.register.RegisterSet;
 
 public class InstrParse {
+    // TODO: some kind of registry to register all facets of an instruction at once (lhs generator, instr creator, etc.)
+
     public static Instr makeBinary(String name, RegisterSet set, Value a, Value b, ValueType typeA, ValueType typeB) {
         return switch (name) {
             case "add" -> new Add(set, a, b, typeA, typeB);

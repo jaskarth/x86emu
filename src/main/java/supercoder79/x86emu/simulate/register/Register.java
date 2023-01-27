@@ -120,7 +120,7 @@ public class Register implements Value {
     }
 
     @Override
-    public String canonical(ValueType type) {
+    public String assemble(ValueType type) {
         return "%" + switch (type) {
             case r64 -> r64;
             case r32 -> r32;

@@ -1,4 +1,4 @@
-package supercoder79.x86emu.instr.trait;
+package supercoder79.x86emu.instr.reg;
 
 import supercoder79.x86emu.simulate.Immediate;
 

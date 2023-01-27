@@ -1,6 +1,5 @@
 package supercoder79.x86emu.instr.reg;
 
-import supercoder79.x86emu.instr.trait.ImmAcceptor;
 import supercoder79.x86emu.superopt.ImmCommon;
 
 import java.util.HashMap;

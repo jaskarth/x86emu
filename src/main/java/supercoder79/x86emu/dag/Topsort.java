@@ -22,7 +22,7 @@ public class Topsort {
 
         System.out.println(list.assemble());
 
-        list.transparent();
+        list.removeOpaque();
 
         return list;
     }

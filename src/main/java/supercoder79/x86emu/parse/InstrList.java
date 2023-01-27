@@ -17,7 +17,7 @@ public class InstrList {
         return instructions;
     }
 
-    public void transparent() {
+    public void removeOpaque() {
         for (int i = 0; i < instructions.size(); i++) {
             Instr instr = instructions.get(i);
             if (instr instanceof Opaque) {

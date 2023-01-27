@@ -3,6 +3,9 @@ package supercoder79.x86emu.simulate.memory;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * Represents memory on the heap.
+ */
 public class HeapMemory {
     private final HashMap<Integer, Byte> memory = new HashMap<>();
 

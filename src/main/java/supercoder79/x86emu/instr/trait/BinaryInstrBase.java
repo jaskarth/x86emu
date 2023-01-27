@@ -52,6 +52,6 @@ public abstract class BinaryInstrBase implements BinaryInstr {
 
     @Override
     public String assemble() {
-        return mnemonic() + " " + a.canonical(typeA) + ", " + b.canonical(typeB);
+        return mnemonic() + " " + a.assemble(typeA) + ", " + b.assemble(typeB);
     }
 }

@@ -4,6 +4,9 @@ import supercoder79.x86emu.simulate.ValueType;
 
 import static supercoder79.x86emu.simulate.ValueType.*;
 
+/**
+ * A set of all possible registers
+ */
 public class RegisterSet {
     private final Register rax = new Register("rax", "eax", "ax", "al");
     private final Register rbx = new Register("rbx", "ebx", "bx", "bl");

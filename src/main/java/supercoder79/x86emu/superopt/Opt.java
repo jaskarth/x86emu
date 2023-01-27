@@ -1,7 +1,6 @@
 package supercoder79.x86emu.superopt;
 
 import supercoder79.x86emu.instr.reg.Instr2Imm;
-import supercoder79.x86emu.instr.trait.ImmAcceptor;
 import supercoder79.x86emu.instr.trait.Instr;
 import supercoder79.x86emu.parse.InstrList;
 import supercoder79.x86emu.parse.InstrParse;
@@ -30,6 +29,8 @@ public class Opt {
 
         List<String> set = new ArrayList<>();
         Random random = new Random();
+//        long start = System.currentTimeMillis();
+//        int count = 0;
         while (true) {
             RegisterSet copy = scopy.clone();
 
@@ -56,6 +57,14 @@ public class Opt {
                     System.out.println("==============");
                 }
             }
+
+//            count++;
+//            long now = System.currentTimeMillis();
+//            if (now - start > 1000) {
+//                System.out.println(count + "/s");
+//                start = now;
+//                count = 0;
+//            }
         }
     }
 

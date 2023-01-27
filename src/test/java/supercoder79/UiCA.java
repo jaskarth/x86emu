@@ -17,7 +17,7 @@ public class UiCA {
         }
 
         try {
-            Process exec = Runtime.getRuntime().exec(UICA_EXEC + " " + obj.getAbsolutePath() + " -arch SKL");
+            Process exec = Runtime.getRuntime().exec(UICA_EXEC + " " + obj.getAbsolutePath() + " -arch RKL");
 
             BufferedReader serr = new BufferedReader(new InputStreamReader(exec.getInputStream()));
 

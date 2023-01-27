@@ -5,6 +5,7 @@ import supercoder79.x86emu.simulate.Immediate;
 import java.util.Random;
 
 public final class ImmCommon {
+    // Variety of different immediate values, mainly dealing with bit flags and such
     public static Immediate flagBearingImm(Random random) {
         if (random.nextInt(4) == 0) {
             return new Immediate(random.nextInt());
@@ -25,6 +26,7 @@ public final class ImmCommon {
         return new Immediate(value);
     }
 
+    // Positive 8 bit value
     public static Immediate imm8p(Random random) {
         return new Immediate((byte) (random.nextInt(random.nextInt(127) + 1) + 1));
     }

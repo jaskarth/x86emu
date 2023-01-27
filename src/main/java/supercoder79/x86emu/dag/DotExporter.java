@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class DotExporter {
@@ -32,7 +31,7 @@ public class DotExporter {
                 builder.append(" -> ");
                 builder.append(ids.get(succ.getDestination()));
                 builder.append(" [label=\"");
-                builder.append(succ.getRegister().canonical(ValueType.r64));
+                builder.append(succ.getRegister().assemble(ValueType.r64));
                 builder.append("\"];\n");
             }
         }

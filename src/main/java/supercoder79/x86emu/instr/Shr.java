@@ -1,17 +1,9 @@
 package supercoder79.x86emu.instr;
 
-import supercoder79.x86emu.instr.trait.BinaryInstrBase;
-import supercoder79.x86emu.instr.trait.ImmAcceptor;
 import supercoder79.x86emu.instr.trait.ShiftInstr;
-import supercoder79.x86emu.simulate.Immediate;
 import supercoder79.x86emu.simulate.Value;
 import supercoder79.x86emu.simulate.ValueType;
 import supercoder79.x86emu.simulate.register.RegisterSet;
-import supercoder79.x86emu.superopt.ImmCommon;
-
-import java.util.Random;
-
-import static supercoder79.x86emu.simulate.ValueType.*;
 
 public class Shr extends ShiftInstr {
 

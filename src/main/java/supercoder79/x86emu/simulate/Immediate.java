@@ -4,6 +4,9 @@ import supercoder79.x86emu.util.Bits;
 
 import static supercoder79.x86emu.simulate.ValueType.*;
 
+/**
+ * A constant value.
+ */
 public final class Immediate implements Value {
     private ValueType type;
     private final long value;
@@ -107,7 +110,7 @@ public final class Immediate implements Value {
     }
 
     @Override
-    public String canonical(ValueType type) {
+    public String assemble(ValueType type) {
         return "$" + value;
     }
 }

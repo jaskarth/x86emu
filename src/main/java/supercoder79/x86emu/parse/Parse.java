@@ -11,6 +11,8 @@ import java.util.regex.Pattern;
 import static supercoder79.x86emu.simulate.ValueType.*;
 
 public class Parse {
+    // FIXME: replace with recursive descent parser
+
     // Extremely funny pattern that can parse all* of x86, AT&T syntax
     // *almost everything. "repne scasb" and such doesn't work (yet?)
     private static final Pattern PATTERN = Pattern.compile("(\\w+)\\s+(?:(\\$\\d+)|(%\\w+)|(?:(\\d*)\\((%\\w+)(?:,(%\\w+),(\\d+))?\\))|(\\..+))(?:,\\s+(%\\w+)|,\\s+(?:(\\d*)\\((%\\w+)(?:,(%\\w+),(\\d+))?\\)))*");

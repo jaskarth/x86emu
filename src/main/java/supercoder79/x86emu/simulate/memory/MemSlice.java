@@ -118,7 +118,7 @@ public class MemSlice implements Value {
     }
 
     @Override
-    public String canonical(ValueType type) {
+    public String assemble(ValueType type) {
         // TODO: x(%y)
         return "[" + start + "]";
     }
