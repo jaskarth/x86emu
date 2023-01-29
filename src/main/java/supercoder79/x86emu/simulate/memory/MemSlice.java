@@ -1,9 +1,10 @@
 package supercoder79.x86emu.simulate.memory;
 
+import supercoder79.x86emu.simulate.MemValue;
 import supercoder79.x86emu.simulate.Value;
 import supercoder79.x86emu.simulate.ValueType;
 
-public class MemSlice implements Value {
+public class MemSlice implements MemValue {
     private final HeapMemory memory;
     public final int start;
 
@@ -121,5 +122,10 @@ public class MemSlice implements Value {
     public String assemble(ValueType type) {
         // TODO: x(%y)
         return "[" + start + "]";
+    }
+
+    @Override
+    public long address() {
+        return start;
     }
 }

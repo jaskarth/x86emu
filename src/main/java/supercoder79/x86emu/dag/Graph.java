@@ -15,10 +15,12 @@ import java.util.Map;
 public final class Graph {
     private final List<Node> nodes;
     private final Node top;
+    private final Node bot;
 
-    public Graph(List<Node> nodes, Node top) {
+    public Graph(List<Node> nodes, Node top, Node bot) {
         this.nodes = nodes;
         this.top = top;
+        this.bot = bot;
     }
 
     public List<Node> getNodes() {
@@ -27,6 +29,10 @@ public final class Graph {
 
     public Node getTop() {
         return top;
+    }
+
+    public Node getBot() {
+        return bot;
     }
 
     public static Graph buildGraph(InstrList list) {
@@ -98,7 +104,7 @@ public final class Graph {
             }
         }
 
-        return new Graph(new ArrayList<>(nodes.values()), nodes.get(optop));
+        return new Graph(new ArrayList<>(nodes.values()), nodes.get(optop), nodes.get(opend));
     }
 
     private static void setEdge(Node start, Node end, Edge edge) {

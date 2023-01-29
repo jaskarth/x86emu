@@ -25,8 +25,8 @@ This is a short-term TODO list for the project.
       - [ ] Or 
       - [ ] Xor 
       - [x] Shift instructions (shl, shr, sar)
-      - [ ] Not
-      - [ ] Neg
+      - [x] Not
+      - [x] Neg
       - [ ] Inc
       - [ ] Dec
       - [ ] Ror (Rotate right)
