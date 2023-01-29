@@ -27,6 +27,6 @@ public class Neg extends UnaryInstrBase {
 
     @Override
     public String mnemonic() {
-        return "not";
+        return "neg";
     }
 }

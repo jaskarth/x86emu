@@ -22,8 +22,8 @@ This is a short-term TODO list for the project.
       - [x] Add 
       - [ ] Sub 
       - [x] And 
-      - [ ] Or 
-      - [ ] Xor 
+      - [x] Or 
+      - [x] Xor 
       - [x] Shift instructions (shl, shr, sar)
       - [x] Not
       - [x] Neg
