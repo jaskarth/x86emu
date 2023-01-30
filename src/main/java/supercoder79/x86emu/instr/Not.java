@@ -1,10 +1,14 @@
 package supercoder79.x86emu.instr;
 
+import supercoder79.x86emu.instr.trait.Instr;
 import supercoder79.x86emu.instr.trait.UnaryInstr;
 import supercoder79.x86emu.instr.trait.UnaryInstrBase;
 import supercoder79.x86emu.simulate.Value;
 import supercoder79.x86emu.simulate.ValueType;
+import supercoder79.x86emu.simulate.register.Register;
 import supercoder79.x86emu.simulate.register.RegisterSet;
+
+import java.util.Random;
 
 import static supercoder79.x86emu.simulate.ValueType.*;
 
@@ -29,5 +33,12 @@ public class Not extends UnaryInstrBase {
     @Override
     public String mnemonic() {
         return "not";
+    }
+
+    public static Instr create(RegisterSet set, Random random) {
+        Register reg = set.random(random);
+        ValueType type = ValueType.random(random);
+
+        return new Not(set, reg, type);
     }
 }

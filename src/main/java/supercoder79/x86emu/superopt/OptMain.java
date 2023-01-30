@@ -12,8 +12,7 @@ public class OptMain {
     public static void main(String[] args) {
         String asm =
         """
-        sar $4, %eax
-        shl $4, %eax
+        xor $-1, %eax
         """;
 
         System.out.println("Trying to generate automatic superopt for:");

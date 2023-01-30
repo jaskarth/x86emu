@@ -111,6 +111,6 @@ public final class Immediate implements Value {
 
     @Override
     public String assemble(ValueType type) {
-        return "$" + value;
+        return type == r64 ? "$" + value : "$" + (int) value;
     }
 }

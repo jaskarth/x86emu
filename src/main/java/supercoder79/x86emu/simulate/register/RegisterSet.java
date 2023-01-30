@@ -2,6 +2,8 @@ package supercoder79.x86emu.simulate.register;
 
 import supercoder79.x86emu.simulate.ValueType;
 
+import java.util.Random;
+
 import static supercoder79.x86emu.simulate.ValueType.*;
 
 /**
@@ -260,6 +262,29 @@ public class RegisterSet {
             case "ax", "bx", "cx", "dx", "si", "di", "bp", "sp", "r8w", "r9w", "r10w", "r11w", "r12w", "r13w", "r14w", "r15w" -> r16;
             case "al", "bl", "cl", "dl", "sil", "dil", "bpl", "spl", "r8b", "r9b", "r10b", "r11b", "r12b", "r13b", "r14b", "r15b" -> ValueType.r8;
             default -> throw new RuntimeException("Unknown register: " + id);
+        };
+    }
+
+    public Register random(Random random) {
+        int i = random.nextInt(16);
+        return switch (i) {
+            case 0 -> rax;
+            case 1 -> rbx;
+            case 2 -> rcx;
+            case 3 -> rdx;
+            case 4 -> rsi;
+            case 5 -> rdi;
+            case 6 -> rbp;
+            case 7 -> rsp;
+            case 8 -> r8;
+            case 9 -> r9;
+            case 10 -> r10;
+            case 11 -> r11;
+            case 12 -> r12;
+            case 13 -> r13;
+            case 14 -> r14;
+            case 15 -> r15;
+            default -> throw new RuntimeException("Unknown register: " + i);
         };
     }
 }

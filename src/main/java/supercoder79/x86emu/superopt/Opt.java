@@ -1,12 +1,10 @@
 package supercoder79.x86emu.superopt;
 
 import supercoder79.x86emu.instr.reg.Instr2Imm;
+import supercoder79.x86emu.instr.reg.InstrRegistry;
 import supercoder79.x86emu.instr.trait.Instr;
 import supercoder79.x86emu.parse.InstrList;
-import supercoder79.x86emu.parse.InstrParse;
 import supercoder79.x86emu.parse.Parse;
-import supercoder79.x86emu.simulate.Immediate;
-import supercoder79.x86emu.simulate.ValueType;
 import supercoder79.x86emu.simulate.register.Register;
 import supercoder79.x86emu.simulate.register.RegisterSet;
 
@@ -15,11 +13,12 @@ import java.util.List;
 import java.util.Random;
 
 public class Opt {
-    private static final String[] OPT_OK = {"and", "shl", "shr", "sar"};
     private static final String[] R64_NAMES = {"rax", "rbx", "rcx", "rdx", "rsi", "rdi", "rbp", "rsp", "r8", "r9", "r10", "r11", "r12", "r13", "r14", "r15"};
     private static final String[] R32_NAMES = {"eax", "ebx", "ecx", "edx", "esi", "edi", "ebp", "esp", "r8d", "r9d", "r10d", "r11d", "r12d", "r13d", "r14d", "r15d"};
 
     public static void trySuperOpt(RegisterSet state, InstrList original, RegisterFiller filler) {
+        InstrRegistry.freeze();
+
         RegisterSet scopy = state.clone();
         for (Instr i : original.getInstructions()) {
             i.execute();
@@ -29,8 +28,8 @@ public class Opt {
 
         List<String> set = new ArrayList<>();
         Random random = new Random();
-//        long start = System.currentTimeMillis();
-//        int count = 0;
+        Metrics metrics = new Metrics();
+
         while (true) {
             RegisterSet copy = scopy.clone();
 
@@ -58,30 +57,12 @@ public class Opt {
                 }
             }
 
-//            count++;
-//            long now = System.currentTimeMillis();
-//            if (now - start > 1000) {
-//                System.out.println(count + "/s");
-//                start = now;
-//                count = 0;
-//            }
+//            metrics.itr();
         }
     }
 
     private static Instr getInstr(Random random, RegisterSet copy) {
-        String name = OPT_OK[random.nextInt(OPT_OK.length)];
-        Immediate immNext = Instr2Imm.get(name).imm(random);
-
-        Register r1 = getReg(random, copy);
-        return InstrParse.makeBinary(name, copy, immNext, r1, immNext.getType(), ValueType.r32);
-    }
-
-    private static Register getReg(Random random, RegisterSet copy) {
-        if (random.nextBoolean()) {
-            return copy.getReg(R64_NAMES[random.nextInt(R64_NAMES.length)]);
-        }
-
-        return copy.getReg(R32_NAMES[random.nextInt(R32_NAMES.length)]);
+        return InstrRegistry.random(random).generator().create(copy, random);
     }
 
     private static boolean rigor(String asm, Random random, RegisterSet origState, RegisterSet endState, InstrList origList, RegisterFiller filler) {

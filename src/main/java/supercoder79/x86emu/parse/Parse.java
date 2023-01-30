@@ -15,7 +15,7 @@ public class Parse {
 
     // Extremely funny pattern that can parse all* of x86, AT&T syntax
     // *almost everything. "repne scasb" and such doesn't work (yet?)
-    private static final Pattern PATTERN = Pattern.compile("(\\w+)\\s+(?:(\\$\\d+)|(%\\w+)|(?:(\\d*)\\((%\\w+)(?:,(%\\w+),(\\d+))?\\))|(\\..+))(?:,\\s+(%\\w+)|,\\s+(?:(\\d*)\\((%\\w+)(?:,(%\\w+),(\\d+))?\\)))*");
+    private static final Pattern PATTERN = Pattern.compile("(\\w+)\\s+(?:(\\$-*\\d+)|(%\\w+)|(?:(\\d*)\\((%\\w+)(?:,(%\\w+),(\\d+))?\\))|(\\..+))(?:,\\s+(%\\w+)|,\\s+(?:(\\d*)\\((%\\w+)(?:,(%\\w+),(\\d+))?\\)))*");
     // Group 1: Instruction name
     // The next groups are not guaranteed to exist!
     // Group 2: Source: Constant immediate
@@ -45,7 +45,7 @@ public class Parse {
                 ValueType typeA = r64;
                 if (matcher.group(2) != null) {
                     // Remove $
-                    Immediate imm = new Immediate(Long.parseUnsignedLong(matcher.group(2).substring(1)));
+                    Immediate imm = new Immediate(Long.parseLong(matcher.group(2).substring(1)));
                     source = imm;
                     typeA = guess(imm);
                     imm.setType(typeA);
@@ -60,7 +60,7 @@ public class Parse {
                     throw new IllegalArgumentException("What source does this line have? " + line);
                 }
 
-                Value destination;
+                Value destination = null;
                 ValueType typeB = r64;
                 if (matcher.group(9) != null) {
                     // Remove %
@@ -69,8 +69,11 @@ public class Parse {
                     typeB = set.regType(reg);
                 } else if (matcher.group(11) != null) {
                     destination = null;
-                } else {
-                    throw new IllegalArgumentException("What destination does this line have? " + line);
+                }
+
+                if (destination == null) {
+                    list.add(InstrParse.makeUnary(instrName, set, source, typeA));
+                    continue;
                 }
 
                 list.add(InstrParse.makeBinary(instrName, set, source, destination, typeA, typeB));

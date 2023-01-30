@@ -39,6 +39,6 @@ public abstract class UnaryInstrBase implements UnaryInstr {
 
     @Override
     public String assemble() {
-        return mnemonic() + " " + value.stringify(type);
+        return mnemonic() + " " + value.assemble(type);
     }
 }

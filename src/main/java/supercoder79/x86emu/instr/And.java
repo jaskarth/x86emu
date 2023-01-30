@@ -1,10 +1,15 @@
 package supercoder79.x86emu.instr;
 
 import supercoder79.x86emu.instr.trait.BinaryInstrBase;
+import supercoder79.x86emu.instr.trait.Instr;
+import supercoder79.x86emu.simulate.Immediate;
 import supercoder79.x86emu.simulate.Value;
 import supercoder79.x86emu.simulate.ValueType;
 import supercoder79.x86emu.simulate.register.RegisterSet;
+import supercoder79.x86emu.superopt.ImmCommon;
 import supercoder79.x86emu.util.Bits;
+
+import java.util.Random;
 
 import static supercoder79.x86emu.simulate.ValueType.*;
 
@@ -74,5 +79,13 @@ public class And extends BinaryInstrBase {
     @Override
     public String mnemonic() {
         return "and";
+    }
+
+    public static Instr create(RegisterSet set, Random random) {
+        Immediate imm32 = ImmCommon.flagBearingImm(random);
+        Value b = set.random(random);
+        ValueType typeB = ValueType.randomHigh(random);
+
+        return new And(set, imm32, b, r32, typeB);
     }
 }

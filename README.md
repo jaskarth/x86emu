@@ -20,7 +20,7 @@ This is a short-term TODO list for the project.
 - [ ] Arithmetic instructions
    - [ ] Simple instructions
       - [x] Add 
-      - [ ] Sub 
+      - [x] Sub 
       - [x] And 
       - [x] Or 
       - [x] Xor 

@@ -1,10 +1,15 @@
 package supercoder79.x86emu.instr;
 
 import supercoder79.x86emu.instr.trait.BinaryInstrBase;
+import supercoder79.x86emu.instr.trait.Instr;
+import supercoder79.x86emu.simulate.Immediate;
 import supercoder79.x86emu.simulate.Value;
 import supercoder79.x86emu.simulate.ValueType;
 import supercoder79.x86emu.simulate.register.RegisterSet;
+import supercoder79.x86emu.superopt.ImmCommon;
 import supercoder79.x86emu.util.Bits;
+
+import java.util.Random;
 
 import static supercoder79.x86emu.simulate.ValueType.*;
 
@@ -33,10 +38,10 @@ public class Xor extends BinaryInstrBase {
             // No sign extension
             int vb = b.v32();
             int va = switch (typeA) {
+                case r64 -> (int) a.v64();
                 case r32 -> a.v32();
                 case r16 -> Bits.u16i(a.v16());
                 case r8 -> Bits.u8i(a.v8());
-                default -> throw new IllegalStateException("Unexpected value: " + typeA);
             };
 
             int result = va ^ vb;
@@ -74,5 +79,13 @@ public class Xor extends BinaryInstrBase {
     @Override
     public String mnemonic() {
         return "xor";
+    }
+
+    public static Instr create(RegisterSet set, Random random) {
+        Immediate imm32 = ImmCommon.flagBearingImm(random);
+        Value b = set.random(random);
+        ValueType typeB = ValueType.randomHigh(random);
+
+        return new Xor(set, imm32, b, r32, typeB);
     }
 }

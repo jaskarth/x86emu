@@ -5,6 +5,9 @@ import supercoder79.x86emu.simulate.MemValue;
 import supercoder79.x86emu.simulate.Value;
 import supercoder79.x86emu.simulate.ValueType;
 import supercoder79.x86emu.simulate.register.Register;
+import supercoder79.x86emu.simulate.register.RegisterSet;
+
+import java.util.Random;
 
 import static supercoder79.x86emu.simulate.ValueType.r64;
 
@@ -28,6 +31,10 @@ public final class MemoryLocationValue implements MemValue {
 
     public MemoryLocationValue(HeapMemory heap, int disp, Value base) {
         this(heap, disp, base, new Immediate(0), 1);
+    }
+
+    public MemoryLocationValue(HeapMemory heap, Value base) {
+        this(heap, 0, base, new Immediate(0), 1);
     }
 
     public MemoryLocationValue(HeapMemory heap, int disp, Value base, Value index, int scale) {
@@ -129,5 +136,17 @@ public final class MemoryLocationValue implements MemValue {
     public long address() {
         setupSlice();
         return backing.address();
+    }
+
+    public static MemoryLocationValue create(HeapMemory heap, RegisterSet set, Random random) {
+        int sel = random.nextInt(4);
+
+        return switch (sel) {
+            case 0 -> new MemoryLocationValue(heap, set.random(random));
+            case 1 -> new MemoryLocationValue(heap, set.random(random), set.random(random));
+            case 2 -> new MemoryLocationValue(heap, random.nextInt(64) * 4,  set.random(random), set.random(random));
+            case 3 -> new MemoryLocationValue(heap, random.nextInt(64) * 4,  set.random(random), set.random(random), (int) Math.pow(2, random.nextInt(4)));
+            default -> throw new IllegalStateException("Unexpected value: " + sel);
+        };
     }
 }
